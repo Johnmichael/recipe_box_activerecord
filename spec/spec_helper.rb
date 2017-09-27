@@ -1,16 +1,4 @@
-
 ENV['RACK_ENV'] = 'test'
-
-# require("rspec")
-# require("pg")
-# require("sinatra/activerecord")
-# require("recipe")
-# require("tag")
-# require("ingredient")
-# require("step")
-# require("rjoin")
-# require("pry")
-# require 'shoulda/matchers'
 
 require("bundler/setup")
 Bundler.require(:default, :test)

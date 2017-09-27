@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col">
+    <% if @ingredients.any? %>
+      <div class="card bg-light">
+        <div class="card-body">
+          <table class="table table-hover table-bordered">
+            <thead class="thead text-white bg-dark">
+              <tr>
+                <th>Ingredients</th>
+                <th>amount</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @ingredients.each do |ingredient| %>
+                <tr class="table-light">
+                  <td class="align-middle"><%= ingredient.item %></td>
+                </td>
+                <td style="text-align: center;"><%=ingredient.amount%>
+                </td>
+                  <td style="text-align: center;">
+                    <a href="/ingredient/<%= ingredient.id %>">
+                      <button class="btn btn-warning btn-block" type="button">Edit ingredient</button>
+                    </a>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h1>Add ingredients for <%=@recipe.recipe_name%></h1>
+
+        <form action="/add_ingredients/<%=@recipe.id%>" method="post">
+          <div class="form-group">
+            <label for="item">Ingredient: </label>
+            <input id="item" name="item" class="form-control" type="text">
+          </div>
+          <div class="form-group">
+            <label for="amount">Amount: </label>
+            <input id="amount" name="amount" class="form-control" type="text">
+          </div>
+          <button type="submit" class="btn btn-warning">Add ingredient</button>
+        </form>
+        <a href="/add_steps/<%=@recipe.id%>"><button type="submit" class="btn btn-info">Add steps</button></a>
+      </div>
+    </div>
+  </div>
+</div>

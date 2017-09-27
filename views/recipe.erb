@@ -1,0 +1,85 @@
+<%=@recipe.recipe_name%>
+
+<div class="row">
+  <div class="col">
+    <% if @ingredients.any? %>
+      <div class="card bg-light">
+        <div class="card-body">
+          <table class="table table-hover table-bordered">
+            <thead class="thead text-white bg-dark">
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @ingredients.each do |ingredient| %>
+                <tr class="table-light">
+                  <td class="align-middle"><%= ingredient.item %></td>
+                  <td style="text-align: center;"><%= ingredient.amount %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <% if @steps.any? %>
+      <div class="card bg-light">
+        <div class="card-body">
+          <table class="table table-hover table-bordered">
+            <thead class="thead text-white bg-dark">
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @steps.each do |step| %>
+                <tr class="table-light">
+                  <td class="align-middle"><%= step.item %></td>
+                  <td style="text-align: center;"><%= step.amount %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <% if @tags.any? %>
+      <div class="card bg-light">
+        <div class="card-body">
+          <table class="table table-hover table-bordered">
+            <thead class="thead text-white bg-dark">
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @tags.each do |tag| %>
+                <tr class="table-light">
+                  <td class="align-middle"><%= tag.item %></td>
+                  <td style="text-align: center;"><%= tag.amount %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
