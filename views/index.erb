@@ -1,8 +1,10 @@
+<br>
 <div class="row">
   <div class="col">
     <% if @recipes.any? %>
       <div class="card bg-light">
         <div class="card-body">
+          <h3>Recipes</h3>
           <table class="table table-hover table-bordered">
             <thead class="thead text-white bg-dark">
               <tr>
@@ -17,10 +19,12 @@
                   <td class="align-middle"><%= recipe.recipe_name %></td>
                   <td style="text-align: center;">
                     <a href="/recipe/<%= recipe.id %>">
-                      <button class="btn btn-warning btn-block" type="button">View Recipe</button>
+                      <button class="btn btn-warning" type="button">View Recipe</button>
                     </a>
                   </td>
-                  <td style="text-align: center;">Rate Recipe
+                  <td style="text-align: center;">
+                    <a href="/rate/<%=recipe.id%>"><button type="button" class="btn btn-success">Rate Recipe</button>
+                    </a>
                   </td>
                 </tr>
               <% end %>
@@ -29,9 +33,11 @@
         </div>
       </div>
     <% end %>
+    <br>
     <% if @tags.any? %>
       <div class="card bg-light">
         <div class="card-body">
+          <h3>Catagories</h3>
           <table class="table table-hover table-bordered">
             <thead class="thead text-white bg-dark">
               <tr>
@@ -45,10 +51,8 @@
                   <td class="align-middle"><%= tag.catagory %></td>
                   <td style="text-align: center;">
                     <a href="/tag/<%= tag.id %>">
-                      <button class="btn btn-warning btn-block" type="button">View Tag</button>
+                      <button class="btn btn-primary" type="button">View Tag</button>
                     </a>
-                  </td>
-                  <td style="text-align: center;"><p>Sample text</p>
                   </td>
                 </tr>
               <% end %>
@@ -57,6 +61,7 @@
         </div>
       </div>
     <% end %>
-    <a href="/create_recipe"><button class="btn btn-warning" type="button">Create Recipe</button></a>
+    <br>
+    <a href="/create_recipe"><button class="btn btn-dark" type="button">Create New Recipe</button></a>
   </div>
 </div>

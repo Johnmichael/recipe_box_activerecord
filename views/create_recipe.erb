@@ -1,3 +1,4 @@
+<br>
 <div class="row">
   <div class="col">
     <% if @recipes.any? %>
@@ -6,8 +7,9 @@
           <table class="table table-hover table-bordered">
             <thead class="thead text-white bg-dark">
               <tr>
-                <th></th>
-                <th></th>
+                <th>Recipes</th>
+                <th>View</th>
+                <th>Rate</th>
               </tr>
             </thead>
             <tbody>
@@ -16,7 +18,7 @@
                   <td class="align-middle"><%= recipe.recipe_name %></td>
                   <td style="text-align: center;">
                     <a href="/recipe/<%= recipe.id %>">
-                      <button class="btn btn-warning btn-block" type="button">View Recipe</button>
+                      <button class="btn btn-warning " type="button">View Recipe</button>
                     </a>
                   </td>
                   <td style="text-align: center;">Rate Recipe
@@ -30,19 +32,17 @@
     <% end %>
   </div>
 </div>
-
+<br>
 <div class="row">
   <div class="col">
     <div class="card bg-light">
       <div class="card-body">
-        <h1>Create a new recipe</h1>
-
         <form action="/create_recipe" method="post">
           <div class="form-group">
-            <label for="recipe_name">Recipe name: </label>
+            <label for="recipe_name">New recipe name: </label>
             <input id="recipe_name" name="recipe_name" class="form-control" type="text">
           </div>
-          <button type="submit" class="btn btn-warning">Create Recipe</button>
+          <button type="submit" class="btn btn-warning">Start a new recipe!</button>
         </form>
       </div>
     </div>
