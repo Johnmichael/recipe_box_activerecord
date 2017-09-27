@@ -5,6 +5,7 @@
     <% if @ingredients.any? %>
       <div class="card bg-light">
         <div class="card-body">
+          <h3>Ingredients</h3>
           <table class="table table-hover table-bordered">
             <thead class="thead text-white bg-dark">
               <tr>
@@ -33,18 +34,17 @@
     <% if @steps.any? %>
       <div class="card bg-light">
         <div class="card-body">
+          <h3>Instructions</h3>
           <table class="table table-hover table-bordered">
             <thead class="thead text-white bg-dark">
               <tr>
-                <th></th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               <% @steps.each do |step| %>
                 <tr class="table-light">
-                  <td class="align-middle"><%= step.item %></td>
-                  <td style="text-align: center;"><%= step.amount %>
+                  <td class="align-middle"><%= step.instruction %></td>
                   </td>
                 </tr>
               <% end %>
@@ -61,19 +61,17 @@
     <% if @tags.any? %>
       <div class="card bg-light">
         <div class="card-body">
+          <h3>Tags</h3>
           <table class="table table-hover table-bordered">
             <thead class="thead text-white bg-dark">
               <tr>
-                <th></th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               <% @tags.each do |tag| %>
                 <tr class="table-light">
-                  <td class="align-middle"><%= tag.item %></td>
-                  <td style="text-align: center;"><%= tag.amount %>
-                  </td>
+                  <td class="align-middle"><%= tag.catagory %></td>
                 </tr>
               <% end %>
             </tbody>
