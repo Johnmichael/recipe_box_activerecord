@@ -1,5 +1,5 @@
 require('spec_helper')
 
-describe(Tag) do
+describe(Step) do
   it {should have_many(:recipes)}
 end
