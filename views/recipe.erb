@@ -1,4 +1,9 @@
-<h2><%=@recipe.recipe_name%></h2>
+<h1><%=@recipe.recipe_name%></h1>
+<% if @recipe.rating %>
+  <% for i in 1..@recipe.rating %>
+      <span>⭐</span>
+  <% end %>
+<% end %>
 
 <div class="row">
   <div class="col">
@@ -15,7 +20,7 @@
             <tbody>
               <% @ingredients.each do |ingredient| %>
                 <tr class="table-light">
-                  <td class="align-middle"><%= ingredient.item %></td>
+                  <td class="align-middle"><a href="/ingredient/<%=ingredient.id%>/<%=ingredient.item%>"><%= ingredient.item %></a></td>
                   <td style="text-align: center;"><%= ingredient.amount %>
                   </td>
                 </tr>
@@ -39,6 +44,26 @@
               <li class="align-middle"><%= step.instruction %></li>
             <% end %>
           </ol>
+          <br>
+          <h5>Rate this recipe:</h5>
+          <div class="stars" >
+            <form action="/recipe/<%=@recipe.id%>" method="post">
+              <input name="_method" type="hidden" value="patch">
+              <input class="star star-5" id="star-5" value="5" type="radio" name="star"/>
+              <label class="star star-5" for="star-5"></label>
+              <input class="star star-4" id="star-4" value="4" type="radio" name="star"/>
+              <label class="star star-4" for="star-4"></label>
+              <input class="star star-3" id="star-3" value="3" type="radio" name="star"/>
+              <label class="star star-3" for="star-3"></label>
+              <input class="star star-2" id="star-2" value="2" type="radio" name="star"/>
+              <label class="star star-2" for="star-2"></label>
+              <input class="star star-1" id="star-1" value="1" type="radio" name="star"/>
+              <label class="star star-1" for="star-1"></label>
+            <a href="/recipe/<%=@recipe.id%>"><button type="submit">Rate!</button></a>
+            </form>
+          </div>
+          <br>
+          <h5>tags</h5>
           <% if @tags.any? %>
             <% @tags.each do |tag| %>
                <a href="/tag/<%=tag.id%>"><p class="align-middle"><%= tag.category %>,</p></a>

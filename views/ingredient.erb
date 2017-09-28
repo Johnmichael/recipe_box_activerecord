@@ -1,0 +1,8 @@
+<div class="card bg-light">
+  <div class="card-body">
+    <h4>Recipes that use <%=@ingredient.item%>:</h4>
+    <% @recipes.each do |recipe| %>
+      <h4> <a href="/recipe/<%=recipe[0].id%>"> <%=recipe[0].recipe_name%></a></h4>
+    <% end %>
+  </div>
+</div>

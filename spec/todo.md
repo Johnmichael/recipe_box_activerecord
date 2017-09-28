@@ -21,3 +21,9 @@ User:
     - 'Add 1/2 cup of sugar'
 
   - After done with steps, User clicks create, inputs are then put into the database.
+
+
+- Deleting a recipe should also delete the ingredients and tags at the row of the recipe, this will prevent tags and ingredients from linking to deprecated recipes. If the ingredient or tag is unique to that recipe, then it should delete tag or ingredient at the tag or ingredient table
+
+- Stars are using an ID for selection
+A workaround may be a serialized ID at the form, with 3 classes 1, 2-4, and 5, and refactoring the CSS to effect the children of the serialized ID.  

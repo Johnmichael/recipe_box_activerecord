@@ -1,3 +1,4 @@
+require("pry")
 require("bundler/setup")
 Bundler.require(:default)
 
@@ -19,7 +20,7 @@ post '/create_recipe' do
   recipe = Recipe.create({:recipe_name => recipe_name, :rating => nil})
   # rjoin = Rjoin.create({:recipe_id => recipe.id, :tag_id => nil, :step_id => nil, :ingredient_id => nil})
   @recipes = Recipe.all()
-  redirect("/add_ingredients/#{recipe.id}")
+  redirect("/add_ingredients/#{recipe.id}/#{rjoin.id}")
 end
 
 get '/add_ingredients/:id' do
@@ -43,6 +44,13 @@ get '/recipe/:id' do
   @tags = @recipe.tags()
   @steps = @recipe.steps()
   erb(:recipe)
+end
+
+patch '/recipe/:id' do
+  recipe = Recipe.find(params[:id])
+  rating = params['star']
+  recipe.update({:rating => rating})
+  redirect("/recipe/#{recipe.id}")
 end
 
 get '/add_steps/:id' do
@@ -73,4 +81,24 @@ post '/add_tags/:id' do
   tag = Tag.create({:category => category})
   Rjoin.create({:recipe_id => recipe.id, :tag_id => tag.id, :step_id => nil, :ingredient_id => nil})
   redirect("/add_tags/#{recipe.id}")
+end
+
+get '/tag/:id' do
+  @tag = Tag.find(params[:id])
+  @recipes = @tag.recipes
+  erb(:tag)
+end
+
+get '/ingredient/:id/:item' do
+  @ingredient = Ingredient.find(params[:id])
+  @all_ing = Ingredient.where("item = '#{@ingredient.item}'")
+  # rjoin
+  # @all_ing.each do |ing|
+  #   rjoin.push(Rjoin.where("ingredient_id = '#{ing.id}'"))
+  # end
+  @recipes = []
+  @all_ing.each do |ing|
+    @recipes.push(ing.recipes)
+  end
+  erb(:ingredient)
 end

@@ -4,13 +4,12 @@
     <% if @recipes.any? %>
       <div class="card bg-light">
         <div class="card-body">
-          <h3>Recipes</h3>
           <table class="table table-hover table-bordered">
             <thead class="thead text-white bg-dark">
               <tr>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>Recipe</th>
+                <th>View</th>
+                <th>Rating</th>
               </tr>
             </thead>
             <tbody>
@@ -23,8 +22,11 @@
                     </a>
                   </td>
                   <td style="text-align: center;">
-                    <a href="/rate/<%=recipe.id%>"><button type="button" class="btn btn-success">Rate Recipe</button>
-                    </a>
+                    <% if recipe.rating %>
+                      <% for i in 1..recipe.rating %>
+                          <span>⭐</span>
+                      <% end %>
+                    <% end %>
                   </td>
                 </tr>
               <% end %>
@@ -38,26 +40,11 @@
       <div class="card bg-light">
         <div class="card-body">
           <h3>Categories</h3>
-          <table class="table table-hover table-bordered">
-            <thead class="thead text-white bg-dark">
-              <tr>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @tags.each do |tag| %>
-                <tr class="table-light">
-                  <td class="align-middle"><%= tag.category %></td>
-                  <td style="text-align: center;">
-                    <a href="/tag/<%= tag.id %>">
-                      <button class="btn btn-primary" type="button">View Tag</button>
-                    </a>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+          <% @tags.each do |tag| %>
+            <p><a href="/tag/<%= tag.id %>">
+              <%= tag.category %>
+            </a>, </p>
+          <% end %>
         </div>
       </div>
     <% end %>

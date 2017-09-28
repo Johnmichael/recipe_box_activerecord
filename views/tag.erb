@@ -1,0 +1,8 @@
+<div class="card bg-light">
+  <div class="card-body">
+    <h4>Recipes related to <%=@tag.category%>:</h4>
+    <% @recipes.each do |recipe| %>
+        <a href="/recipe/<%= recipe.id %>"><li class="align-middle"><%= recipe.recipe_name %></a>, Rated: <%=recipe.rating%></li>
+    <% end %>
+  </div>
+</div>
