@@ -69,8 +69,8 @@ end
 post '/add_tags/:id' do
   recipe = Recipe.find(params[:id])
   tags = recipe.tags()
-  catagory = params[:catagory]
-  tag = Tag.create({:catagory => catagory})
+  category = params[:category]
+  tag = Tag.create({:category => category})
   Rjoin.create({:recipe_id => recipe.id, :tag_id => tag.id, :step_id => nil, :ingredient_id => nil})
   redirect("/add_tags/#{recipe.id}")
 end

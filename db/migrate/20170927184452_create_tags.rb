@@ -1,7 +1,7 @@
 class CreateTags < ActiveRecord::Migration[5.1]
   def change
     create_table(:tags) do |t|
-      t.column(:catagory, :string)
+      t.column(:category, :string)
 
       t.timestamps()
     end
