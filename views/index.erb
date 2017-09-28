@@ -41,9 +41,9 @@
         <div class="card-body">
           <h3>Categories</h3>
           <% @tags.each do |tag| %>
-            <p><a href="/tag/<%= tag.id %>">
-              <%= tag.category %>
-            </a>, </p>
+            <p><a href="/tag/<%= tag %>">
+              <%= tag %>
+            </a></p>
           <% end %>
         </div>
       </div>

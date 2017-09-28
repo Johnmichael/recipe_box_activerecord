@@ -6,7 +6,12 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 get '/' do
   @recipes = Recipe.all()
-  @tags = Tag.all()
+  @all_tags = Tag.all()
+  @tags = []
+  @all_tags.each do |tag|
+    @tags.push(tag.category)
+  end
+  @tags.uniq!
   erb(:index)
 end
 
@@ -83,9 +88,12 @@ post '/add_tags/:id' do
   redirect("/add_tags/#{recipe.id}")
 end
 
-get '/tag/:id' do
-  @tag = Tag.find(params[:id])
-  @recipes = @tag.recipes
+get '/tag/:category' do
+  @all_tag = Tag.where("category = '#{params[:category]}'")
+  @recipes = []
+  @all_tag.each do |tag|
+    @recipes.push(tag.recipes)
+  end
   erb(:tag)
 end
 
@@ -118,6 +126,20 @@ end
 
 delete '/edit_recipe/:id' do
   recipe = Recipe.find(params[:id])
-  recipe.delete
+  rjoins = Rjoin.where("recipe_id = '#{recipe.id}'")
+  rjoins.each do |r|
+    if r.ingredient_id.blank? == false
+        binding.pry
+      Ingredient.find(r.ingredient_id).destroy
+    end
+    if r.tag_id.blank? == false
+      Tag.find(r.tag_id).destroy
+    end
+    if r.step_id.blank? == false
+      Step.find(r.step_id).destroy
+    end
+    r.destroy
+  end
+  recipe.destroy
   redirect("/")
 end
