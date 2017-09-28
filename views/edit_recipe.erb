@@ -1,0 +1,18 @@
+<h5>Edit recipe: <%=@recipe.recipe_name %></h5>
+
+
+<form action="/edit_recipe/<%=@recipe.id%>" method="post">
+  <div class="form-group">
+    <input name="_method" type="hidden" value="patch">
+    <label for="recipe_name"> Update recipe to: </label>
+    <input id="recipe_name" name="recipe_name" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn btn-warning">Update recipe</button>
+</form>
+
+<form action="/edit_recipe/<%=@recipe.id%>" method="post">
+  <div class="form-group">
+    <input name="_method" type="hidden" value="delete">
+  </div>
+  <button type="submit" class="btn btn-danger">Delete</button>
+</form>

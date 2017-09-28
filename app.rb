@@ -20,7 +20,7 @@ post '/create_recipe' do
   recipe = Recipe.create({:recipe_name => recipe_name, :rating => nil})
   # rjoin = Rjoin.create({:recipe_id => recipe.id, :tag_id => nil, :step_id => nil, :ingredient_id => nil})
   @recipes = Recipe.all()
-  redirect("/add_ingredients/#{recipe.id}/#{rjoin.id}")
+  redirect("/add_ingredients/#{recipe.id}")
 end
 
 get '/add_ingredients/:id' do
@@ -101,4 +101,23 @@ get '/ingredient/:id/:item' do
     @recipes.push(ing.recipes)
   end
   erb(:ingredient)
+end
+
+get '/edit_recipe/:id' do
+  @recipe = Recipe.find(params[:id])
+
+  erb(:edit_recipe)
+end
+
+patch '/edit_recipe/:id' do
+  recipe_name = params['recipe_name']
+  recipe = Recipe.find(params[:id])
+  recipe.update({:recipe_name => recipe_name})
+  redirect("/recipe/#{recipe.id}")
+end
+
+delete '/edit_recipe/:id' do
+  recipe = Recipe.find(params[:id])
+  recipe.delete
+  redirect("/")
 end
