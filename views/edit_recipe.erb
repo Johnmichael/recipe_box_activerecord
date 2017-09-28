@@ -1,18 +1,39 @@
 <h5>Edit recipe: <%=@recipe.recipe_name %></h5>
+<div class="card bg-light">
+  <div class="card-body">
+    <table class="table table-hover table-bordered">
+      <thead class="thead text-white bg-dark">
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
 
+        <td><form action="/edit_recipe/<%=@recipe.id%>" method="post">
+          <div class="form-group">
+            <input name="_method" type="hidden" value="patch">
+            <label for="recipe_name"> Update recipe name to: </label>
+            <input id="recipe_name" name="recipe_name" class="form-control" type="text">
+          </div>
+          <button type="submit" class="btn btn-warning">Update Recipe Name</button>
+        </form></td>
+        <td><a href="/add_ingredients/<%=@recipe.id%>"><button type="button" class="btn btn-info" name="button">Edit Ingredients</button></a></td>
+        <td><a href="/add_ingredients/<%=@recipe.id%>"><button type="button" class="btn btn-info" name="button">Edit Ingredients</button></a></td>
+        <td><a href="/add_steps/<%=@recipe.id%>"><button type="button" class="btn btn-info" name="button">Edit Steps</button></a></td>
+        <td>
+        <a href="/add_tags/<%=@recipe.id%>"><button type="button" class="btn btn-info" name="button">Edit Tags</button></a></td>
+      </tbody>
+    </table>
 
-<form action="/edit_recipe/<%=@recipe.id%>" method="post">
-  <div class="form-group">
-    <input name="_method" type="hidden" value="patch">
-    <label for="recipe_name"> Update recipe to: </label>
-    <input id="recipe_name" name="recipe_name" class="form-control" type="text">
+    <form action="/edit_recipe/<%=@recipe.id%>" method="post">
+      <div class="form-group">
+        <input name="_method" type="hidden" value="delete">
+      </div>
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
   </div>
-  <button type="submit" class="btn btn-warning">Update recipe</button>
-</form>
-
-<form action="/edit_recipe/<%=@recipe.id%>" method="post">
-  <div class="form-group">
-    <input name="_method" type="hidden" value="delete">
-  </div>
-  <button type="submit" class="btn btn-danger">Delete</button>
-</form>
+</div>
