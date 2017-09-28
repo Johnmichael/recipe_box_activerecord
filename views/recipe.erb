@@ -65,9 +65,9 @@
 
               <input class="star star-1" id="star-1" value="1" type="radio" name="star"/>
               <label class="star star-1" for="star-1"></label>
+              <a href="/recipe/<%=@recipe.id%>"><button type="submit" class="btn btn-warning rightbutton" name ="button">Rate!</button></a>
             </form>
           </div>
-          <a href="/recipe/<%=@recipe.id%>"><button type="submit" class="btn btn-warning">Rate!</button></a>
           <br>
           <% if @tags.any? %>
             <% @tags.each do |tag| %>
